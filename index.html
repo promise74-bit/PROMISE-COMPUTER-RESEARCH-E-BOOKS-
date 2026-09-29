@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Checker</title>
+
+  <!-- ================= CSS (the looks) ================= -->
+  <style>
+    /* EDIT ME: change these colors to make the page yours */
+    :root {
+      --page-bg: #e8eef7;
+      --card-bg: #ffffff;
+      --main-color: #2f4fd8;
+      --text-color: #1c2333;
+      --good: #1a7f4b;
+      --bad: #c62828;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: var(--page-bg);
+      color: var(--text-color);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 380px;
+      background: var(--card-bg);
+      padding: 28px 24px;
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: 1.6rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #b8c0d0;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: 2px solid var(--main-color);
+      border-color: transparent;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: var(--main-color);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #result {
+      margin: 16px 0 0;
+      min-height: 1.4em;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .success { color: var(--good); }
+    .error   { color: var(--bad); }
+
+    @media (max-width: 400px) {
+      .card { padding: 22px 16px; }
+      h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ================= HTML (the structure) ================= -->
+  <main class="card">
+    <h1>Login</h1>
+
+    <label for="email">Email</label>
+    <input type="text" id="email" placeholder="you@example.com" />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="At least 6 characters" />
+
+    <button onclick="checkLogin()">Login</button>
+
+    <p id="result"></p>
+  </main>
+
+  <!-- ================= JavaScript (the brain) ================= -->
+  <script>
+    function checkLogin() {
+      // 1. Read what the user typed
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const result = document.getElementById("result");
+
+      // 2. Decide what message to show
+      if (!(email.includes("@") && email.includes(".com"))) {
+        result.textContent = "Invalid email ❌";
+        result.className = "error";
+      } else if (password.length < 6) {
+        result.textContent = "Password must be at least 6 characters ❌";
+        result.className = "error";
+      } else {
+        result.textContent = "Login successful ✅";
+        result.className = "success";
+      }
+    }
+
+    /* EDIT ME ideas (do these one at a time):
+       1. Change the page colors in :root at the top.
+       2. Change the title "Login" to your own text.
+       3. Make the Enter key trigger the login too.
+       4. Also require the email not to start with "@".
+       5. Show a "Please fill in all fields" message when either box is empty. */
+  </script>
+</body>
+</html>
